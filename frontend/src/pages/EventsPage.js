@@ -1,25 +1,23 @@
+import { useLoaderData } from "react-router-dom";
+
 import EventsList from "../components/EventsList";
 
-const DUMMY_EVENTS = [
-  {
-    id: 'e1',
-    title: "Event 1",
-    date: "26 feb 2022",
-  },
-  {
-    id: 'e2',
-    title: "Event 2",
-    date: "27feb 2022",
-  },
-  {
-    id: 'e3',
-    title: "Event 3",
-    date: "28 feb 2022",
-  },
-];
-
-const EventsPage = () => {
-  return <EventsList events={DUMMY_EVENTS}/>;
-};
+function EventsPage() {
+  const data = useLoaderData();
+  const events = data.events;
+  return <EventsList events={events} />;
+}
 
 export default EventsPage;
+
+export const loader = async()=> {
+    const response = await fetch('http://localhost:8080/events');
+
+    if (!response.ok) {
+      // setError('Fetching events failed.');
+    } else {
+    //   const resData = await response.json();
+    //   return resData.events;
+    return response;
+    }
+};
