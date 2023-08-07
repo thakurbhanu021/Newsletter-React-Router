@@ -15,6 +15,7 @@ export const loader = async()=> {
 
     if (!response.ok) {
       // setError('Fetching events failed.');
+      throw new Response(JSON.stringify({message:'Could not fetch events!'}), {status: 500})
     } else {
     //   const resData = await response.json();
     //   return resData.events;
