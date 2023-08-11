@@ -24,7 +24,7 @@ export const loader = async ({ request, params }) => {
       { status: 500 }
     );
   } else {
-    return response;
+   return response;
   }
 };
 
